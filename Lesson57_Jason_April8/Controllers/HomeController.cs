@@ -12,19 +12,25 @@ namespace Lesson57_Jason_April8.Controllers
         {
             return View();
         }
-
-        public ActionResult About()
+        public ActionResult GetReversed(string text)
         {
-            ViewBag.Message = "Your application description page.";
+            string reverse = "";
+            for(int i = text.Length - 1; i >= 0; i--)
+            {
+                reverse += text[i];
+            }
 
-            return View();
+
+            ToReverse tr = new ToReverse
+            {
+                Text = reverse,
+
+            };
+            return Json(tr, JsonRequestBehavior.AllowGet);
         }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+    }
+    public class ToReverse
+    {
+        public string Text { get; set; }
     }
 }
